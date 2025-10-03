@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visual Corp | Mega Promociones de Aniversario</title>
+  <meta name="description" content="Mega promociones por aniversario de Visual Corp. Precios con IVA + diseño incluido. Envíos a nivel nacional." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Visual Corp | Mega Promociones de Aniversario" />
+  <meta property="og:locale" content="es_EC" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg:#000;--card:#101114;--text:#fff;--muted:#bdbec7;
+      --accent:#F2C94C;--accent-2:#D9A404;--ring:rgba(242,201,76,.28);--sep:rgba(255,255,255,.08);
+      --success:#25D366;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;background:var(--bg);color:var(--text)}
+    .wrap{max-width:1200px;margin:auto;padding:22px}
+
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:16px 18px;border:1px solid var(--sep);border-radius:20px;background:#07080B;position:sticky;top:12px;z-index:5}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{width:58px;height:58px;border-radius:14px;object-fit:cover;border:2px solid var(--accent);box-shadow:0 0 0 6px rgba(242,201,76,.12)}
+    .title{font-weight:700}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:#14151b;border:1px solid var(--sep);border-radius:999px;padding:8px 12px;color:var(--muted);font-weight:600}
+    .badge i{color:var(--accent)}
+
+    .hero{margin:18px 0 10px;padding:24px;border-radius:22px;background:#0c0c10;border:1px solid var(--sep)}
+    .hero h1{margin:0 0 8px;font-size:clamp(1.6rem,2.4vw,2.4rem);font-weight:800}
+    .hero p{margin:0;color:var(--muted)}
+    .pill{display:inline-flex;gap:8px;align-items:center;margin-top:12px;background:#1a1b21;border:1px solid var(--sep);border-radius:999px;padding:8px 12px}
+    .pill b{color:#111;background:var(--accent);padding:4px 10px;border-radius:999px}
+
+    /* Countdown */
+    .countdown{margin-top:16px;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:10px;max-width:520px}
+    .cbox{background:#14151b;border:1px solid var(--sep);border-radius:14px;text-align:center;padding:10px 6px}
+    .cbox b{display:block;font-size:1.6rem;line-height:1;color:var(--accent)}
+    .cbox span{font-size:.85rem;color:var(--muted)}
+
+    /* Grid */
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 12;background:var(--card);border:1px solid var(--sep);border-radius:18px;display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:center;padding:14px;box-shadow:0 8px 28px rgba(0,0,0,.35);overflow:hidden}
+    @media (min-width:720px){ .card{grid-column:span 6} }
+    @media (min-width:1080px){ .card{grid-column:span 4} }
+
+    .imgBox{background:#0b0c10;border:1px dashed var(--sep);border-radius:14px;height:140px;width:140px;display:grid;place-items:center;position:relative;overflow:hidden}
+    .imgBox img{max-width:92%;max-height:92%;object-fit:contain;cursor:pointer;transition:transform .2s ease}
+    .imgBox img:hover{transform:scale(1.08)}
+
+    .content h3{margin:0 0 4px;font-size:1.05rem}
+    .content .meta{color:var(--muted);font-size:.9rem;margin-bottom:8px}
+    .price{display:inline-block;background:var(--accent);color:#111;font-weight:800;border-radius:12px;padding:6px 10px;margin:6px 6px 0 0}
+    .list{margin:10px 0 0;padding:0;list-style:none}.list li{margin:2px 0}
+    .labels{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+    .label{border:1px solid var(--sep);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:.85rem;background:#14151a}
+
+    .actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{border:1px solid var(--accent-2);background:var(--accent);color:#111;padding:10px 14px;border-radius:12px;font-weight:800;text-decoration:none}
+    .btn.whatsapp{background:var(--success);border-color:#1fb457;color:#071d0e}
+    .btn.outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+
+    .sticky-cta{position:sticky;bottom:0;left:0;right:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px) saturate(1.2);border-top:1px solid var(--sep);padding:10px 14px;display:flex;gap:10px;justify-content:center}
+    .sticky-cta a{flex:1;max-width:520px;text-align:center}
+    .foot{margin:20px 0 8px;color:var(--muted);font-size:.92rem;text-align:center}
+
+    /* ======= ESTILOS DEL LIGHTBOX/MODAL ======= */
+    .lightbox{
+      position:fixed; inset:0; background:rgba(0,0,0,.85);
+      backdrop-filter:blur(8px); z-index:1000;
+      display:none; align-items:center; justify-content:center;
+      padding:20px;
+    }
+    .lightbox img{
+      max-width:90vw; max-height:85vh; object-fit:contain;
+      box-shadow: 0 10px 40px rgba(0,0,0,.5); border-radius:8px;
+    }
+    .lightbox .close{
+      position:absolute; top:20px; right:30px;
+      font-size:2.5rem; color:white; cursor:pointer;
+      line-height:1; font-weight:300;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmSKnD00M-kkEpOeoGxEL9UP7_Zfgf8Ug33Q&s" alt="Logo Visual Corp" />
+        <div>
+          <div class="title">Visual Corp</div>
+          <div class="badge"><i class="fa-regular fa-circle-check"></i> Precios con <b>IVA + Diseño</b></div>
+        </div>
+      </div>
+      <div class="badge"><i class="fa-solid fa-truck-fast"></i> Envíos a nivel nacional</div>
+    </header>
+
+    <section class="hero">
+      <h1>🎉 Mega Promociones de Aniversario</h1>
+      <p>Aprovecha precios especiales por tiempo limitado. <b>Aplican restricciones.</b></p>
+      <div class="pill"><i class="fa-regular fa-clock"></i> <b>Octubre</b> — Cupos limitados</div>
+
+      <div class="countdown" aria-label="Cuenta regresiva a 31/10/2025">
+        <div class="cbox"><b id="cd-days">00</b><span>Días</span></div>
+        <div class="cbox"><b id="cd-hours">00</b><span>Horas</span></div>
+        <div class="cbox"><b id="cd-mins">00</b><span>Minutos</span></div>
+        <div class="cbox"><b id="cd-secs">00</b><span>Segundos</span></div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Promociones">
+      <article class="card">
+        <div class="imgBox">
+          <img src="img/rollup.png" alt="Roll Up 80x200 (PNG)" />
+        </div>
+        <div class="content">
+          <h3>Roll Up 80×200 cm</h3>
+          <div class="meta">Incluye bolso de obsequio</div>
+          <span class="price">1 × $50</span><span class="price">3 × $120</span>
+          <span class="price">6 × $210</span><span class="price">12 × $360</span>
+          <ul class="list"><li>IVA + Diseño incluidos</li></ul>
+          <div class="labels"><span class="label">Garantía</span><span class="label">Listo para eventos</span></div>
+          <div class="actions">
+            <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Cotizar</a>
+            <button class="btn outline" data-producto="Roll Up 80×200 cm">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="imgBox">
+          <img src="img/bannerx.png" alt="Banner X Araña (PNG)"/>
+        </div>
+        <div class="content">
+          <h3>Banner X (60×160 cm)</h3>
+          <div class="meta">Diseño + bolso gratis</div>
+          <span class="price">1 × $30</span><span class="price">3 × $75</span>
+          <span class="price">6 × $140</span><span class="price">12 × $240</span>
+          <ul class="list"><li>IVA + Diseño incluidos</li></ul>
+          <div class="labels"><span class="label">Ligero</span><span class="label">Rápido de armar</span></div>
+          <div class="actions">
+            <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Cotizar</a>
+            <button class="btn outline" data-producto="Banner X 60×160 cm">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="imgBox">
+          <img src="img/luminoso.png" alt="Rótulo luminoso (PNG)"/>
+        </div>
+        <div class="content">
+          <h3>Rótulo Luminoso</h3>
+          <div class="meta">Desde <b>$70</b> — Instalación gratis</div>
+          <ul class="list"><li>IVA + Diseño incluidos</li></ul>
+          <div class="labels"><span class="label">Visibilidad 24/7</span></div>
+          <div class="actions">
+            <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Cotizar</a>
+            <button class="btn outline" data-producto="Rótulo Luminoso">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="imgBox">
+          <img src="img/corporeo.png" alt="Rótulos corpóreos 3D (PNG)"/>
+        </div>
+        <div class="content">
+          <h3>Rótulos Corpóreos (Letras 3D)</h3>
+          <div class="meta">Desde <b>$400</b> — 10 letras, 30 cm alto c/u — Instalación gratis</div>
+          <ul class="list"><li>IVA + Diseño incluidos</li></ul>
+          <div class="labels"><span class="label">Premium</span><span class="label">Alto relieve</span></div>
+          <div class="actions">
+            <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Cotizar</a>
+            <button class="btn outline" data-producto="Rótulos Corpóreos 3D">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="imgBox">
+          <img src="img/stand.png" alt="Stand publicitario (PNG)"/>
+        </div>
+        <div class="content">
+          <h3>Stand Publicitario</h3>
+          <div class="meta">+ bolso de obsequio</div>
+          <span class="price">1 × $130</span><span class="price">3 × $300</span>
+          <span class="price">6 × $540</span><span class="price">12 × $1000</span>
+          <ul class="list"><li>IVA + Diseño incluidos</li></ul>
+          <div class="labels"><span class="label">Ferias y activaciones</span></div>
+          <div class="actions">
+            <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Cotizar</a>
+            <button class="btn outline" data-producto="Stand Publicitario">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="imgBox">
+          <img src="img/cintra.png" alt="Plancha de cintra 3mm (PNG)"/>
+        </div>
+        <div class="content">
+          <h3>Plancha de Cintra 3mm</h3>
+          <div class="meta">220 × 140 cm — <b>$100</b> (≈ $33/m²)</div>
+          <ul class="list"><li>IVA + Diseño incluidos</li></ul>
+          <div class="labels"><span class="label">Córtala a tu medida</span></div>
+          <div class="actions">
+            <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Cotizar</a>
+            <button class="btn outline" data-producto="Plancha de Cintra 3mm">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="imgBox">
+          <img src="img/vidrio.png" alt="Reconocimientos en placa de vidrio (PNG)"/>
+        </div>
+        <div class="content">
+          <h3>Reconocimientos en Placa de Vidrio</h3>
+          <div class="meta">Descuentos desde la docena</div>
+          <ul class="list"><li>IVA + Diseño incluidos</li></ul>
+          <div class="labels"><span class="label">Nuevo producto</span><span class="label">Al por mayor</span></div>
+          <div class="actions">
+            <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Cotizar</a>
+            <button class="btn outline" data-producto="Reconocimientos en Placa de Vidrio">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="imgBox">
+          <img src="img/dummy.png" alt="Dummy inflable (PNG)"/>
+        </div>
+        <div class="content">
+          <h3>Dummies Inflables</h3>
+          <div class="meta"><b>$300</b></div>
+          <ul class="list"><li>IVA + Diseño incluidos</li></ul>
+          <div class="labels"><span class="label">Gran impacto</span></div>
+          <div class="actions">
+            <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Cotizar</a>
+            <button class="btn outline" data-producto="Dummy Inflable">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="imgBox">
+          <img src="img/etiquetas.png" alt="Millar de etiquetas 5x5 (PNG)"/>
+        </div>
+        <div class="content">
+          <h3>Etiquetas Troqueladas</h3>
+          <div class="meta">Millar 5×5 cm — <b>$30</b></div>
+          <ul class="list"><li>IVA + Diseño incluidos</li></ul>
+          <div class="labels"><span class="label">Alto volumen</span></div>
+          <div class="actions">
+            <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Cotizar</a>
+            <button class="btn outline" data-producto="Etiquetas Troqueladas 5×5 (millar)">Pedir por WhatsApp</button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="sticky-cta">
+      <a class="btn whatsapp" target="_blank" href="https://visualcorp-ec.github.io/contacto/"><i class="fa-brands fa-whatsapp"></i> Escríbenos</a>
+    </div>
+
+    <div class="foot" id="contacto">
+      © <span id="year"></span> Visual Corp · Milagro, Ecuador · Instagram: @visualcorpec · TikTok: @visualcorpmilagro
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close" id="lightbox-close">&times;</span>
+    <img src="" alt="Vista ampliada" id="lightbox-img">
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Temporizador hasta 31/10/2025 23:59:59 (UTC-5 Ecuador)
+    (function startCountdown(){
+      const target = new Date('2025-10-31T23:59:59-05:00').getTime();
+      const el = {
+        d: document.getElementById('cd-days'), h: document.getElementById('cd-hours'),
+        m: document.getElementById('cd-mins'), s: document.getElementById('cd-secs'),
+      };
+      const pad = v => String(v).padStart(2,'0');
+      function tick(){
+        let diff = target - Date.now(); if(diff < 0) diff = 0;
+        const d = Math.floor(diff / (1000*60*60*24));
+        const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+        const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+        const s = Math.floor((diff % (1000*60)) / 1000);
+        el.d.textContent = pad(d); el.h.textContent = pad(h); el.m.textContent = pad(m); el.s.textContent = pad(s);
+        if(diff === 0) clearInterval(timer);
+      }
+      tick();
+      const timer = setInterval(tick, 1000);
+    })();
+
+    // ======= LÓGICA DEL LIGHTBOX/MODAL =======
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const productImages = document.querySelectorAll('.imgBox img');
+
+    productImages.forEach(image => {
+      image.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = image.src;
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => {
+      // Cierra el lightbox solo si se hace clic en el fondo (el contenedor)
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+  </script>
+</body>
+</html>
