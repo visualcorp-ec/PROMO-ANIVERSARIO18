@@ -50,9 +50,32 @@
     @media (min-width:720px){ .card{grid-column:span 6} }
     @media (min-width:1080px){ .card{grid-column:span 4} }
 
-    .imgBox{background:#0b0c10;border:1px dashed var(--sep);border-radius:14px;height:140px;width:140px;display:grid;place-items:center;position:relative;overflow:hidden}
-    .imgBox img{max-width:92%;max-height:92%;object-fit:contain;cursor:pointer;transition:transform .2s ease}
-    .imgBox img:hover{transform:scale(1.08)}
+        .imgBox {
+  height: 140px; /* Mantenemos el alto para alinear las tarjetas */
+  width: 140px;  /* Mantenemos el ancho para la estructura */
+  position: relative; /* Clave: crea un contexto de posicionamiento */
+  /* Quitamos display:grid y place-items:center */
+}
+
+.imgBox img {
+  /* Estas 4 líneas son la clave para centrar y permitir que la imagen sobresalga */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Ajustamos el tamaño máximo */
+  max-width: 100%;   /* La imagen no será más ancha que su caja */
+  max-height: 150%; /* Permite que la imagen sea hasta un 50% más alta que la caja */
+  
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+
+.imgBox img:hover {
+  transform: translate(-50%, -50%) scale(1.08); /* Ajustamos el hover */
+}
 
     .content h3{margin:0 0 4px;font-size:1.05rem}
     .content .meta{color:var(--muted);font-size:.9rem;margin-bottom:8px}
@@ -331,3 +354,4 @@
   </script>
 </body>
 </html>
+
